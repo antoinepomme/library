@@ -31,16 +31,27 @@ function displayBooks() {
         let p = document.createElement("p");
         p.textContent = myLibrary[item].pages;
         card.append(p);
-        //
-        // read
-        //
+        //create a div and a p, change div class and p content according to read
+        //append p to div then div to card
+        divRead = document.createElement("div");
+        pRead = document.createElement("p");
+        if (myLibrary[item].read) {
+            divRead.classList.add("read");
+            pRead.textContent = "read";
+        } else {
+            divRead.classList.add("not-read");
+            pRead.textContent = "not read yet";
+        }
+        divRead.append(pRead);
+        card.append(divRead);
+
         contentContainer.append(card);
     }
 }
 
-//example
+//examples
 myLibrary[0] = new Book("a", "b", 123, 1);
 myLibrary[1] = new Book("a", "b", 123, 1);
-myLibrary[2] = new Book("a", "b", 123, 1);
+myLibrary[2] = new Book("a", "b", 123, 0);
 
 displayBooks();
