@@ -26,9 +26,8 @@ cancelButton.addEventListener('click', () => {
 });
 
 function getFormValues() {
-    console.log(0);
     if (form.title.value && form.author.value && form.pages.value && form.pages.value > 0) {
-        console.log(1);
+
         addBookToLibrary(form.title.value, form.author.value, form.pages.value, form.read.checked);
         dialogWindow.close();
     } else {
@@ -74,9 +73,33 @@ function displayBooks() {
     }
     //
     for (item in myLibrary) {
-        //create card div and assign "card" class
+        //create card div and assign "card" class and id
         let card = document.createElement("div");
         card.classList.add("card");
+        card.setAttribute("id", item + '');
+        //delete card button with corresponding class
+        let deleteButton = document.createElement("button")
+        deleteButton.classList.add("cardDelete");
+        deleteButton.textContent = "x";
+        card.append(deleteButton);
+        deleteButton.addEventListener('click', () => {
+            let cards = document.getElementsByClassName("card");
+            let itemIndex = +card.getAttribute("id");
+            let i = 0;
+            let removed = 0;
+            while (cards[i]) {
+                if (i === itemIndex && removed === 0) {
+                    myLibrary.splice(itemIndex, 1);
+                    removed = 1;
+                }
+                if (removed) {
+                    cards[i].setAttribute("id", +cards[i].getAttribute("id") - 1 + '');
+                }
+                i++;
+            }
+            card.parentNode.removeChild(card);
+            console.log(myLibrary);
+        });
         //create h1, assign title to it and append it to the card
         let h1 = document.createElement("h1");
         h1.textContent = myLibrary[item].title;
