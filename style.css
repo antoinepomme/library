@@ -1,9 +1,100 @@
+@font-face {
+    font-family: 'roc';
+    src: url(assets/fonts/Fontspring-DEMO-rocgrotesk-black.otf);
+  }
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: roboto, sans-serif;
+    background-color: #F4F2DE;
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template: 100vh / 30% 1fr;
+}
+
+.header {
+    background-color: #E9B384;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+.header > h1 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'roc';
+    color: #F4F2DE;
+    font-size: 18vh;
+    letter-spacing: 2vh;
+}
+
+.content-container {
+    display: grid;
+    grid-template: 1fr / max-content 1fr;
+}
+
+.content {
+    display: grid;
+    grid-template: repeat(auto-fit, 200px) / repeat(auto-fit, 150px);
+    gap: 2rem;
+    padding: 3rem;
+}
+
 input:invalid {
     border: solid red 1px;
+}
+
+.add {
+    background-color: #A1CCD1;
+    border: solid #A1CCD1 1px;
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    font-size: 5vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 45%;
+    left: 63%;
+    transition: transform 0.5s;
+}
+
+.add:hover {
+    transform: rotate(90deg);
+}
+
+.card {
+    background-color: antiquewhite;
+    display: grid;
+    grid-template-rows: max-content max-content max-content max-content max-content;
+    padding: 1rem;
+}
+
+.title {
+
+}
+
+.pages {
+    
+}
+
+.cardDelete {
+    width: 1rem;
+    height: 1rem;
+    justify-self: end;
+}
+
+.not-read {
+    display: flex;
+    align-items: flex-end;
 }
