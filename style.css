@@ -1,7 +1,12 @@
 @font-face {
-    font-family: 'roc';
-    src: url(assets/fonts/Fontspring-DEMO-rocgrotesk-black.otf);
-  }
+    font-family: "Correspondence";
+    src: url("https://db.onlinewebfonts.com/t/e85b14c8bef1542c37f5e39db5152e71.eot");
+    src: url("https://db.onlinewebfonts.com/t/e85b14c8bef1542c37f5e39db5152e71.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/e85b14c8bef1542c37f5e39db5152e71.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/e85b14c8bef1542c37f5e39db5152e71.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/e85b14c8bef1542c37f5e39db5152e71.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/e85b14c8bef1542c37f5e39db5152e71.svg#Meta Correspondence W07 Regular")format("svg");
+}
 
 * {
     padding: 0;
@@ -10,14 +15,14 @@
 }
 
 body {
-    font-family: roboto, sans-serif;
+    font-family: 'Correspondence', roboto, sans-serif;
     background-color: #F4F2DE;
 }
 
 .container {
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
-    grid-template: 100vh / 30% 1fr;
+    grid-template: 1fr / 30% 1fr;
 }
 
 .header {
@@ -42,10 +47,12 @@ body {
 }
 
 .content {
+    grid-column: 2 / 3;
     display: grid;
-    grid-template: repeat(auto-fit, 200px) / repeat(auto-fit, 150px);
-    gap: 2rem;
-    padding: 3rem;
+    grid-template: repeat(auto-fit, 200px) / repeat(auto-fit, 130px);
+    gap: 4rem;
+    padding: 2rem;
+    justify-content: center;
 }
 
 input:invalid {
@@ -53,8 +60,8 @@ input:invalid {
 }
 
 .add {
-    background-color: #A1CCD1;
-    border: solid #A1CCD1 1px;
+    background-color: #b20507;
+    border: solid #b20507 1px;
     border-radius: 50%;
     width: 5vh;
     height: 5vh;
@@ -64,8 +71,11 @@ input:invalid {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 45%;
-    left: 63%;
+    top: 50vh;
+    margin-top: -2.5vh;
+    left: 30%;
+    margin-left: -2.5vh;
+    cursor: pointer;
     transition: transform 0.5s;
 }
 
@@ -74,27 +84,82 @@ input:invalid {
 }
 
 .card {
-    background-color: antiquewhite;
+    background-image: url(images/model\ \(1\).jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
     display: grid;
     grid-template-rows: max-content max-content max-content max-content max-content;
-    padding: 1rem;
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0px 3px 3px rgb(78, 78, 78);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    gap: 0.2rem;
+    justify-items: center;
 }
 
-.title {
-
+.card:hover {
+    box-shadow: 3px 5px 5px rgb(78, 78, 78);
 }
 
-.pages {
-    
+.card > h1 {
+    color: #b20507;
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.card > h2 {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1rem;
+}
+
+.card > p {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.read-button {
+    font-size: 0.8rem;
+    font-family: inherit;
+    text-align: center;
+    border: solid black 1px;
+    border-radius: 10px;
+    padding: 0 0.5rem;
+    background: #b20507;
+    color: white;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .cardDelete {
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
     width: 1rem;
     height: 1rem;
     justify-self: end;
 }
 
-.not-read {
-    display: flex;
-    align-items: flex-end;
+.cardDelete:hover {
+    cursor: pointer;
+}
+
+dialog {
+    background-color: #A1CCD1;
+    color: white;
+    text-shadow: 1px 1px 2px rgb(78, 78, 78);
+    box-shadow: 3px 3px 3px rgb(78, 78, 78);
+    width: 250px;
+    height: 250px;
+    padding: 25px;
+    position: absolute;
+    top: 50vh;
+    margin-top: -125px;
+    left: 30%;
+    margin-left: -125px;
+    border: none;
+    outline: solid #F4F2DE 1px;
+    border-radius: 15px;
 }

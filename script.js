@@ -57,6 +57,10 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.changeRead = function() {
+        this.read ? this.read = 0 : this.read = 1;
+        displayBooks();
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -80,7 +84,7 @@ function displayBooks() {
         //delete card button with corresponding class
         let deleteButton = document.createElement("button")
         deleteButton.classList.add("cardDelete");
-        deleteButton.textContent = "x";
+        deleteButton.textContent = "🗙";
         card.append(deleteButton);
         deleteButton.addEventListener('click', () => {
             let cards = document.getElementsByClassName("card");
@@ -98,7 +102,6 @@ function displayBooks() {
                 i++;
             }
             card.parentNode.removeChild(card);
-            console.log(myLibrary);
         });
         //create h1, assign title to it and append it to the card
         let h1 = document.createElement("h1");
@@ -110,22 +113,28 @@ function displayBooks() {
         card.append(h2);
         //create p, assign pages to it and append it to the card
         let p = document.createElement("p");
-        p.textContent = myLibrary[item].pages;
+        p.textContent = myLibrary[item].pages + " pages";
         card.append(p);
-        //create a div and a p, change div class and p content according to read
-        //append p to div then div to card
-        divRead = document.createElement("div");
-        pRead = document.createElement("p");
+        //create a button change class and content according to read
+        //handle change status on click
+        //append button to card
+        let buttonRead = document.createElement("button");
+        buttonRead.classList.add("read-button");
         if (myLibrary[item].read) {
-            divRead.classList.add("read");
-            pRead.textContent = "read";
+            buttonRead.textContent = "read";
         } else {
-            divRead.classList.add("not-read");
-            pRead.textContent = "not read yet";
+            buttonRead.textContent = "not read";
         }
-        divRead.append(pRead);
-        card.append(divRead);
+        card.append(buttonRead);
+        buttonRead.addEventListener('click', () => {
+            myLibrary[+card.getAttribute("id")].changeRead();
+        });
 
         contentContainer.append(card);
     }
 }
+
+//examples
+addBookToLibrary("Le Petit Prince", "Antoine de Saint-Exupéry", 97, 1);
+addBookToLibrary("Paroles", "Jacques Prévert", 253, 1);
+addBookToLibrary("L'Alchimiste", "Paulo Coelho", 252, 0);
